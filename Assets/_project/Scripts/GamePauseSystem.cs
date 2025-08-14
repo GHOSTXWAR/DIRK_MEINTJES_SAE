@@ -1,22 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems; // ADDED
+
 public class GamePauseSystem : MonoBehaviour
 {
     public static bool inPausedState = false;
     private InputSystem_Actions inputSystem;
     private InputAction pause;
     public GameObject PauseMenu;
-   
 
-    // Update is called once per frame
+    // ADDED
+    public GameObject firstSelectedMain; // first button in pause menu
+    private InputActionMap uiMap;        // UI action map reference
+
     private void Awake()
     {
         inputSystem = new InputSystem_Actions();
-        
+        uiMap = inputSystem.UI; // reference UI map
     }
+
     private void OnEnable()
     {
-       
         pause = inputSystem.Player.Pause;
         pause.Enable();
     }
@@ -25,11 +29,11 @@ public class GamePauseSystem : MonoBehaviour
     {
         pause.Disable();
     }
+
     void Update()
     {
-        
-         if (pause.WasPressedThisFrame()) //IMPORTANT!!
-        {  
+        if (pause.WasPressedThisFrame()) //IMPORTANT!!
+        {
             PauseGame();
         }
     }
@@ -45,28 +49,35 @@ public class GamePauseSystem : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+
     public void PauseGame()
     {
-        inPausedState= !inPausedState;
+        inPausedState = !inPausedState;
+
         if (!inPausedState)
         {
             Time.timeScale = 1f; //Unpause game
             if (PauseMenu != null)
-                //PauseMenu.GetComponent<Canvas>().enabled = false;
                 PauseMenu.SetActive(false);
-            inPausedState= false;
+
+            uiMap.Disable(); // disable UI inputs
+            inPausedState = false;
             Debug.Log("Game is unpaused");
         }
-        else 
+        else
         {
             Time.timeScale = 0f; //Pause game
             if (PauseMenu != null)
-                //PauseMenu.GetComponent<Canvas>().enabled = true;
                 PauseMenu.SetActive(true);
+
+            uiMap.Enable(); // enable UI inputs
+
+            // set first button for navigation
+            if (firstSelectedMain != null)
+                EventSystem.current.SetSelectedGameObject(firstSelectedMain);
+
             inPausedState = true;
             Debug.Log("Game is paused");
-
         }
     }
-
 }
