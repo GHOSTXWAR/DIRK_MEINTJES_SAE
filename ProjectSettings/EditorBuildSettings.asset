@@ -10,15 +10,6 @@ EditorBuildSettings:
     guid: 95508cc9a77d7444189f6c5c172d43b3
   - enabled: 1
     path: Assets/_project/Scenes/LEVEL One.unity
-    guid: 0014d6e0417d153449a7f0557d245834
-  - enabled: 1
-    path: Assets/_project/Scenes/LEVEL Two.unity
-    guid: 42356b71b75bf1a47b496fc813d9f962
-  - enabled: 1
-    path: Assets/_project/Scenes/LEVEL Three.unity
-    guid: df611fbc092cc4b47ae2bad1a8982eda
-  - enabled: 1
-    path: Assets/_project/Scenes/LEVEL Four.unity
     guid: 2109a7bea1e48e745910edaaad708b7b
   - enabled: 1
     path: Assets/_project/Scenes/Death Scene.unity

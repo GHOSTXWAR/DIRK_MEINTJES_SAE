@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    private enum SceneName { DeathScene, MainMenu, WinScene, LEVELOne, LEVELTwo, LEVELThree, LEVELFour, nullScene }
+    private enum SceneName { DeathScene, MainMenu, WinScene, LEVELOne, nullScene }
     [SerializeField] private SceneName sceneName;
 
     private void Awake()
@@ -14,15 +14,7 @@ public class SceneLoader : MonoBehaviour
                 case ("LEVEL One"):
                     sceneName = SceneName.LEVELOne;
                     break;
-                case ("LEVEL Two"):
-                    sceneName =SceneName.LEVELTwo;
-                    break;
-                case ("LEVEL Three"):
-                    sceneName=SceneName.LEVELThree;
-                    break;
-                case ("LEVEL Four"):
-                    sceneName=SceneName.LEVELFour;
-                    break;
+         
             }
         }
     }
@@ -42,15 +34,7 @@ public class SceneLoader : MonoBehaviour
             case (SceneName.DeathScene):
                 SceneManager.LoadScene("Death Scene");
                 break;
-            case (SceneName.LEVELTwo):
-                SceneManager.LoadScene("LEVEL Two");
-                break;
-            case (SceneName.LEVELThree):
-                SceneManager.LoadScene("LEVEL Three");
-                break;
-            case (SceneName.LEVELFour):
-                SceneManager.LoadScene("LEVEL Four");
-                break;
+
         }
     }
 
